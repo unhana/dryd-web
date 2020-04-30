@@ -4,6 +4,22 @@ This project is initialized with [Ant Design Pro](https://pro.ant.design). Follo
 
 ## Environment Prepare
 
+Fitst of all,install the `nodejs`&`yarn`.[Optional `cnpm`]:
+
+http://nodejs.cn/
+
+```bash
+npm install -g yarn --registry=https://registry.npm.taobao.org
+
+yarn config set registry https://registry.npm.taobao.org -g
+yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+```
+Clone this project:
+
+```bash
+git clone git@github.com:wangzhaoya/dryd-web.git
+```
+
 Install `node_modules`:
 
 ```bash
