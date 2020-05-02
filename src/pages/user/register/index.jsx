@@ -30,9 +30,7 @@ const passwordProgressMap = {
 };
 
 const Register = ({ submitting, dispatch, userAndregister }) => {
-  const [count, setcount] = useState(0);
   const [visible, setvisible] = useState(false);
-  const [prefix, setprefix] = useState('86');
   const [popover, setpopover] = useState(false);
   const confirmDirty = false;
   let interval;
@@ -88,7 +86,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
     return 'poor';
   };
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     dispatch({
       type: 'userAndregister/submit',
       payload: { ...values, prefix },
@@ -138,7 +136,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
     return promise.resolve();
   };
 
-  const changePrefix = value => {
+  const changePrefix = (value) => {
     setprefix(value);
   };
 
@@ -189,7 +187,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
           />
         </FormItem>
         <Popover
-          getPopupContainer={node => {
+          getPopupContainer={(node) => {
             if (node && node.parentNode) {
               return node.parentNode;
             }

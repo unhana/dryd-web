@@ -2,8 +2,12 @@
 export default {
   'POST  /api/register': (_, res) => {
     res.send({
-      status: 'ok',
-      currentAuthority: 'user',
+      success: false,
+      msg: '就这?',
+      code: 'JZ',
+      data: {
+        iii: 'i18n',
+      },
     });
   },
 };
