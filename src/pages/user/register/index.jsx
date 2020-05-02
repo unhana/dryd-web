@@ -1,11 +1,10 @@
-import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
-import React, { useState, useEffect } from 'react';
-import { Link, connect, history, FormattedMessage, formatMessage } from 'umi';
+import { Alert, Button, Col, Form, Input, message, Popover, Progress, Row, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { connect, formatMessage, FormattedMessage, history, Link } from 'umi';
 import styles from './style.less';
 
 const FormItem = Form.Item;
 const { Option } = Select;
-const InputGroup = Input.Group;
 const passwordStatusMap = {
   ok: (
     <div className={styles.success}>
@@ -28,21 +27,27 @@ const passwordProgressMap = {
   pass: 'normal',
   poor: 'exception',
 };
-
+const RegisterMessage = ({ content }) => (
+  <Alert
+    style={{
+      marginBottom: 24,
+    }}
+    message={content}
+    type="error"
+    showIcon
+  />
+);
 const Register = ({ submitting, dispatch, userAndregister }) => {
   const [visible, setvisible] = useState(false);
   const [popover, setpopover] = useState(false);
+  const response = userAndregister;
   const confirmDirty = false;
   let interval;
   const [form] = Form.useForm();
   useEffect(() => {
-    if (!userAndregister) {
-      return;
-    }
+    const account = form.getFieldValue('userName');
 
-    const account = form.getFieldValue('mail');
-
-    if (userAndregister.status === 'ok') {
+    if (userAndregister.success) {
       message.success('注册成功！');
       history.push({
         pathname: '/user/register-result',
@@ -58,19 +63,6 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
     },
     [],
   );
-
-  const onGetCaptcha = () => {
-    let counts = 59;
-    setcount(counts);
-    interval = window.setInterval(() => {
-      counts -= 1;
-      setcount(counts);
-
-      if (counts === 0) {
-        clearInterval(interval);
-      }
-    }, 1000);
-  };
 
   const getPasswordStatus = () => {
     const value = form.getFieldValue('password');
@@ -89,7 +81,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
   const onFinish = (values) => {
     dispatch({
       type: 'userAndregister/submit',
-      payload: { ...values, prefix },
+      payload: { ...values },
     });
   };
 
@@ -102,6 +94,16 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
           id: 'userandregister.password.twice',
         }),
       );
+    }
+
+    return promise.resolve();
+  };
+
+  const checkAccountType = (_, value) => {
+    const promise = Promise;
+
+    if (value !== '0' || value !== '1') {
+      return promise.reject('请选择账号类型!');
     }
 
     return promise.resolve();
@@ -162,29 +164,19 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
         <FormattedMessage id="userandregister.register.register" />
       </h3>
       <Form form={form} name="UserRegister" onFinish={onFinish}>
+        {response.success && response.success === false && (
+          <RegisterMessage content={response.msg} />
+        )}
         <FormItem
           name="mail"
           rules={[
             {
               required: true,
-              message: formatMessage({
-                id: 'userandregister.email.required',
-              }),
-            },
-            {
-              type: 'email',
-              message: formatMessage({
-                id: 'userandregister.email.wrong-format',
-              }),
+              message: '请输入账号!',
             },
           ]}
         >
-          <Input
-            size="large"
-            placeholder={formatMessage({
-              id: 'userandregister.email.placeholder',
-            })}
-          />
+          <Input size="large" placeholder="请输入账号" />
         </FormItem>
         <Popover
           getPopupContainer={(node) => {
@@ -263,82 +255,19 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
             })}
           />
         </FormItem>
-        <InputGroup compact>
-          <Select
-            size="large"
-            value={prefix}
-            onChange={changePrefix}
-            style={{
-              width: '20%',
-            }}
-          >
-            <Option value="86">+86</Option>
-            <Option value="87">+87</Option>
+        <FormItem
+          name="type"
+          rules={[
+            {
+              validator: checkAccountType,
+            },
+          ]}
+        >
+          <Select size="large" placeholder="请选择账号类型">
+            <Option value="1">会员</Option>
+            <Option value="2">教练</Option>
           </Select>
-          <FormItem
-            style={{
-              width: '80%',
-            }}
-            name="mobile"
-            rules={[
-              {
-                required: true,
-                message: formatMessage({
-                  id: 'userandregister.phone-number.required',
-                }),
-              },
-              {
-                pattern: /^\d{11}$/,
-                message: formatMessage({
-                  id: 'userandregister.phone-number.wrong-format',
-                }),
-              },
-            ]}
-          >
-            <Input
-              size="large"
-              placeholder={formatMessage({
-                id: 'userandregister.phone-number.placeholder',
-              })}
-            />
-          </FormItem>
-        </InputGroup>
-        <Row gutter={8}>
-          <Col span={16}>
-            <FormItem
-              name="captcha"
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userandregister.verification-code.required',
-                  }),
-                },
-              ]}
-            >
-              <Input
-                size="large"
-                placeholder={formatMessage({
-                  id: 'userandregister.verification-code.placeholder',
-                })}
-              />
-            </FormItem>
-          </Col>
-          <Col span={8}>
-            <Button
-              size="large"
-              disabled={!!count}
-              className={styles.getCaptcha}
-              onClick={onGetCaptcha}
-            >
-              {count
-                ? `${count} s`
-                : formatMessage({
-                    id: 'userandregister.register.get-verification-code',
-                  })}
-            </Button>
-          </Col>
-        </Row>
+        </FormItem>
         <FormItem>
           <Button
             size="large"

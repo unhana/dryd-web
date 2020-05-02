@@ -1,12 +1,13 @@
 import { DefaultFooter, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Link, useIntl, connect } from 'umi';
+import { GithubOutlined } from '@ant-design/icons';
 import React from 'react';
 import SelectLang from '@/components/SelectLang';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
 
-const UserLayout = props => {
+const UserLayout = (props) => {
   const {
     route = {
       routes: [],
@@ -43,14 +44,30 @@ const UserLayout = props => {
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
-                <span className={styles.title}>Ant Design</span>
+                <span className={styles.title}>多人运动</span>
               </Link>
             </div>
-            <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            <div className={styles.desc}>多人运动,你的健身好助手</div>
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <DefaultFooter
+          copyright="罗志祥时间管理股份有限公司"
+          links={[
+            {
+              key: 'web',
+              title: [<GithubOutlined />, '前端'],
+              href: 'https://github.com/wangzhaoya/dryd-web',
+              blankTarget: true,
+            },
+            {
+              key: 'server',
+              title: [<GithubOutlined />, '后端'],
+              href: 'https://github.com/wangzhaoya/dryd',
+              blankTarget: true,
+            },
+          ]}
+        />
       </div>
     </HelmetProvider>
   );
