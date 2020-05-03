@@ -16,6 +16,7 @@ const Model = {
   },
   reducers: {
     registerHandle(state, { payload }) {
+      //是否要拆开
       return { ...state, ...payload };
     },
   },

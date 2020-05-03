@@ -164,7 +164,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
         <FormattedMessage id="userandregister.register.register" />
       </h3>
       <Form form={form} name="UserRegister" onFinish={onFinish}>
-        {response.success && response.success === false && (
+        {response.success !== undefined && response.success === false && (
           <RegisterMessage content={response.msg} />
         )}
         <FormItem

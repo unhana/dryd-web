@@ -47,7 +47,7 @@ const UserLayout = (props) => {
                 <span className={styles.title}>多人运动</span>
               </Link>
             </div>
-            <div className={styles.desc}>多人运动,你的健身好助手</div>
+            <div className={styles.desc}>多人运动,时间管理,你的健身好助手</div>
           </div>
           {children}
         </div>
