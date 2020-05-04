@@ -5,7 +5,7 @@ export default {
       msg: '啊这',
       data: {
         accountType: 'COACH',
-        sessionId: '21389012380129',
+        sessionId: '',
       },
     });
   },
