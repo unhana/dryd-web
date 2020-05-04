@@ -1,7 +1,8 @@
 import { history } from 'umi';
 import { message } from 'antd';
-import { fakeAccountLogin, getFakeCaptcha } from './service';
+import { fakeAccountLogin } from './service';
 import { getPageQuery, setAuthority } from './utils/utils';
+import cookie from 'react-cookies';
 
 const Model = {
   namespace: 'userAndlogin',
@@ -11,12 +12,13 @@ const Model = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+      let accountType = cookie.load('accountType');
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       }); // Login successfully
 
-      if (response.status === 'ok') {
+      if (response.success) {
         message.success('登录成功！');
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -40,15 +42,11 @@ const Model = {
         history.replace(redirect || '/');
       }
     },
-
-    *getCaptcha({ payload }, { call }) {
-      yield call(getFakeCaptcha, payload);
-    },
   },
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
-      return { ...state, status: payload.status, type: payload.type };
+      setAuthority(payload.data.accountType);
+      return { ...state, ...payload };
     },
   },
 };

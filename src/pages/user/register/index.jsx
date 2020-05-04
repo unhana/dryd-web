@@ -102,7 +102,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
   const checkAccountType = (_, value) => {
     const promise = Promise;
 
-    if (value !== '0' || value !== '1') {
+    if (value !== '1' && value !== '2') {
       return promise.reject('请选择账号类型!');
     }
 
@@ -168,7 +168,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
           <RegisterMessage content={response.msg} />
         )}
         <FormItem
-          name="mail"
+          name="userName"
           rules={[
             {
               required: true,

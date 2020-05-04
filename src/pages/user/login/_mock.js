@@ -1,44 +1,12 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-function getFakeCaptcha(req, res) {
-  return res.json('captcha-xxx');
-}
-
 export default {
-  'POST  /api/login/account': (req, res) => {
-    const { password, userName, type } = req.body;
-
-    if (password === 'ant.design' && userName === 'admin') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      return;
-    }
-
-    if (password === 'ant.design' && userName === 'user') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
-      });
-      return;
-    }
-
-    if (type === 'mobile') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      return;
-    }
-
+  'POST  /api/user/login': (req, res) => {
     res.send({
-      status: 'error',
-      type,
-      currentAuthority: 'guest',
+      success: false,
+      msg: '啊这',
+      data: {
+        accountType: 'COACH',
+        sessionId: '21389012380129',
+      },
     });
   },
-  'GET  /api/login/captcha': getFakeCaptcha,
 };
