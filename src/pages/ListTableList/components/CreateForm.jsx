@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'antd';
 
-const CreateForm = props => {
+const CreateForm = (props) => {
   const { modalVisible, onCancel } = props;
   return (
     <Modal

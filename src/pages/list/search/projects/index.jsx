@@ -35,7 +35,7 @@ const Projects = ({ dispatch, listAndsearchAndprojects: { list = [] }, loading }
         xs: 1,
       }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item>
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
             <Card.Meta

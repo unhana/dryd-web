@@ -205,7 +205,7 @@ const columns = [
     title: '执行结果',
     dataIndex: 'status',
     key: 'status',
-    render: text => {
+    render: (text) => {
       if (text === 'agree') {
         return <Badge status="success" text="成功" />;
       }
@@ -238,13 +238,13 @@ class Advanced extends Component {
     });
   }
 
-  onOperationTabChange = key => {
+  onOperationTabChange = (key) => {
     this.setState({
       operationKey: key,
     });
   };
 
-  onTabChange = tabActiveKey => {
+  onTabChange = (tabActiveKey) => {
     this.setState({
       tabActiveKey,
     });

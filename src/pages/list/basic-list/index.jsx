@@ -56,7 +56,7 @@ const ListContent = ({ data: { owner, createdAt, percent, status } }) => (
   </div>
 );
 
-export const BasicList = props => {
+export const BasicList = (props) => {
   const addBtn = useRef(null);
   const {
     loading,
@@ -86,12 +86,12 @@ export const BasicList = props => {
     setCurrent(undefined);
   };
 
-  const showEditModal = item => {
+  const showEditModal = (item) => {
     setVisible(true);
     setCurrent(item);
   };
 
-  const deleteItem = id => {
+  const deleteItem = (id) => {
     dispatch({
       type: 'listAndbasicList/submit',
       payload: {
@@ -158,7 +158,7 @@ export const BasicList = props => {
     setVisible(false);
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     const id = current ? current.id : '';
     setAddBtnblur();
     setDone(true);
@@ -220,12 +220,12 @@ export const BasicList = props => {
               loading={loading}
               pagination={paginationProps}
               dataSource={list}
-              renderItem={item => (
+              renderItem={(item) => (
                 <List.Item
                   actions={[
                     <a
                       key="edit"
-                      onClick={e => {
+                      onClick={(e) => {
                         e.preventDefault();
                         showEditModal(item);
                       }}

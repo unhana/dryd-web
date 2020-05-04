@@ -63,7 +63,7 @@ const CardInfo = ({ activeUser, newUser }) => (
   </div>
 );
 
-export const Applications = props => {
+export const Applications = (props) => {
   const {
     dispatch,
     loading,
@@ -180,7 +180,7 @@ export const Applications = props => {
         }}
         loading={loading}
         dataSource={list}
-        renderItem={item => (
+        renderItem={(item) => (
           <List.Item key={item.id}>
             <Card
               hoverable

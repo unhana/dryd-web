@@ -10,11 +10,11 @@ const TableForm = ({ value, onChange }) => {
   const [cacheOriginData, setCacheOriginData] = useState({});
   const [data, setData] = useState(value);
 
-  const getRowByKey = (key, newData) => (newData || data)?.filter(item => item.key === key)[0];
+  const getRowByKey = (key, newData) => (newData || data)?.filter((item) => item.key === key)[0];
 
   const toggleEditable = (e, key) => {
     e.preventDefault();
-    const newData = data?.map(item => ({ ...item }));
+    const newData = data?.map((item) => ({ ...item }));
     const target = getRowByKey(key, newData);
 
     if (target) {
@@ -30,7 +30,7 @@ const TableForm = ({ value, onChange }) => {
   };
 
   const newMember = () => {
-    const newData = data?.map(item => ({ ...item })) || []; // eslint-disable-next-line no-unused-expressions
+    const newData = data?.map((item) => ({ ...item })) || []; // eslint-disable-next-line no-unused-expressions
 
     newData?.push({
       key: `NEW_TEMP_ID_${index}`,
@@ -44,8 +44,8 @@ const TableForm = ({ value, onChange }) => {
     setData(newData);
   };
 
-  const remove = key => {
-    const newData = data?.filter(item => item.key !== key);
+  const remove = (key) => {
+    const newData = data?.filter((item) => item.key !== key);
     setData(newData);
 
     if (onChange) {
@@ -104,7 +104,7 @@ const TableForm = ({ value, onChange }) => {
     const newData = [...data]; // 编辑前的原始数据
 
     let cacheData = [];
-    cacheData = newData.map(item => {
+    cacheData = newData.map((item) => {
       if (item.key === key) {
         if (cacheOriginData[key]) {
           const originItem = { ...item, ...cacheOriginData[key], editable: false };
@@ -132,8 +132,8 @@ const TableForm = ({ value, onChange }) => {
             <Input
               value={text}
               autoFocus
-              onChange={e => handleFieldChange(e, 'name', record.key)}
-              onKeyPress={e => handleKeyPress(e, record.key)}
+              onChange={(e) => handleFieldChange(e, 'name', record.key)}
+              onKeyPress={(e) => handleKeyPress(e, record.key)}
               placeholder="成员姓名"
             />
           );
@@ -152,8 +152,8 @@ const TableForm = ({ value, onChange }) => {
           return (
             <Input
               value={text}
-              onChange={e => handleFieldChange(e, 'workId', record.key)}
-              onKeyPress={e => handleKeyPress(e, record.key)}
+              onChange={(e) => handleFieldChange(e, 'workId', record.key)}
+              onKeyPress={(e) => handleKeyPress(e, record.key)}
               placeholder="工号"
             />
           );
@@ -172,8 +172,8 @@ const TableForm = ({ value, onChange }) => {
           return (
             <Input
               value={text}
-              onChange={e => handleFieldChange(e, 'department', record.key)}
-              onKeyPress={e => handleKeyPress(e, record.key)}
+              onChange={(e) => handleFieldChange(e, 'department', record.key)}
+              onKeyPress={(e) => handleKeyPress(e, record.key)}
               placeholder="所属部门"
             />
           );
@@ -194,7 +194,7 @@ const TableForm = ({ value, onChange }) => {
           if (record.isNew) {
             return (
               <span>
-                <a onClick={e => saveRow(e, record.key)}>添加</a>
+                <a onClick={(e) => saveRow(e, record.key)}>添加</a>
                 <Divider type="vertical" />
                 <Popconfirm title="是否要删除此行？" onConfirm={() => remove(record.key)}>
                   <a>删除</a>
@@ -205,16 +205,16 @@ const TableForm = ({ value, onChange }) => {
 
           return (
             <span>
-              <a onClick={e => saveRow(e, record.key)}>保存</a>
+              <a onClick={(e) => saveRow(e, record.key)}>保存</a>
               <Divider type="vertical" />
-              <a onClick={e => cancel(e, record.key)}>取消</a>
+              <a onClick={(e) => cancel(e, record.key)}>取消</a>
             </span>
           );
         }
 
         return (
           <span>
-            <a onClick={e => toggleEditable(e, record.key)}>编辑</a>
+            <a onClick={(e) => toggleEditable(e, record.key)}>编辑</a>
             <Divider type="vertical" />
             <Popconfirm title="是否要删除此行？" onConfirm={() => remove(record.key)}>
               <a>删除</a>
@@ -231,7 +231,7 @@ const TableForm = ({ value, onChange }) => {
         columns={columns}
         dataSource={data}
         pagination={false}
-        rowClassName={record => (record.editable ? styles.editable : '')}
+        rowClassName={(record) => (record.editable ? styles.editable : '')}
       />
       <Button
         style={{

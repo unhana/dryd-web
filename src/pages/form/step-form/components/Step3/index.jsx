@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'umi';
 import styles from './index.less';
 
-const Step3 = props => {
+const Step3 = (props) => {
   const { data, dispatch } = props;
 
   if (!data) {

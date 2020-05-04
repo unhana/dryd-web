@@ -19,7 +19,7 @@ const progressColumns = [
     title: '状态',
     dataIndex: 'status',
     key: 'status',
-    render: text => {
+    render: (text) => {
       if (text === 'success') {
         return <Badge status="success" text="成功" />;
       }
@@ -55,7 +55,7 @@ class Basic extends Component {
     if (basicGoods.length) {
       let num = 0;
       let amount = 0;
-      basicGoods.forEach(item => {
+      basicGoods.forEach((item) => {
         num += Number(item.num);
         amount += Number(item.amount);
       });

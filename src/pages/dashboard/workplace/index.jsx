@@ -97,8 +97,8 @@ class Workplace extends Component {
     });
   }
 
-  renderActivities = item => {
-    const events = item.template.split(/@\{([^{}]*)\}/gi).map(key => {
+  renderActivities = (item) => {
+    const events = item.template.split(/@\{([^{}]*)\}/gi).map((key) => {
       if (item[key]) {
         return (
           <a href={item[key].link} key={item[key].name}>
@@ -164,7 +164,7 @@ class Workplace extends Component {
                 padding: 0,
               }}
             >
-              {projectNotice.map(item => (
+              {projectNotice.map((item) => (
                 <Card.Grid className={styles.projectGrid} key={item.id}>
                   <Card
                     bodyStyle={{
@@ -204,7 +204,7 @@ class Workplace extends Component {
             >
               <List
                 loading={activitiesLoading}
-                renderItem={item => this.renderActivities(item)}
+                renderItem={(item) => this.renderActivities(item)}
                 dataSource={activities}
                 className={styles.activitiesList}
                 size="large"
@@ -247,7 +247,7 @@ class Workplace extends Component {
             >
               <div className={styles.members}>
                 <Row gutter={48}>
-                  {projectNotice.map(item => (
+                  {projectNotice.map((item) => (
                     <Col span={12} key={`members-item-${item.id}`}>
                       <Link to={item.href}>
                         <Avatar src={item.logo} size="small" />

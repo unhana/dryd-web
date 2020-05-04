@@ -4,7 +4,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 
 class Search extends Component {
-  handleTabChange = key => {
+  handleTabChange = (key) => {
     const { match } = this.props;
     const url = match.url === '/' ? '' : match.url;
 
@@ -26,7 +26,7 @@ class Search extends Component {
     }
   };
 
-  handleFormSubmit = value => {
+  handleFormSubmit = (value) => {
     // eslint-disable-next-line no-console
     console.log(value);
   };

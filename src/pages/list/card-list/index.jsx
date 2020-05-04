@@ -68,7 +68,7 @@ class CardList extends Component {
               xs: 1,
             }}
             dataSource={[nullData, ...list]}
-            renderItem={item => {
+            renderItem={(item) => {
               if (item && item.id) {
                 return (
                   <List.Item key={item.id}>

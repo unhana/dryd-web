@@ -5,7 +5,7 @@ import moment from 'moment';
 import AvatarList from '../AvatarList';
 import styles from './index.less';
 
-const Projects = props => {
+const Projects = (props) => {
   const { list } = props;
   return (
     <List
@@ -21,7 +21,7 @@ const Projects = props => {
         xs: 1,
       }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item>
           <Card className={styles.card} hoverable cover={<img alt={item.title} src={item.cover} />}>
             <Card.Meta title={<a>{item.title}</a>} description={item.subDescription} />
@@ -29,7 +29,7 @@ const Projects = props => {
               <span>{moment(item.updatedAt).fromNow()}</span>
               <div className={styles.avatarList}>
                 <AvatarList size="small">
-                  {item.members.map(member => (
+                  {item.members.map((member) => (
                     <AvatarList.Item
                       key={`${item.id}-avatar-${member.id}`}
                       src={member.avatar}

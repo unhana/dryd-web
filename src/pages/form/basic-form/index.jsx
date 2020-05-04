@@ -10,7 +10,7 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-const BasicForm = props => {
+const BasicForm = (props) => {
   const { submitting } = props;
   const [form] = Form.useForm();
   const [showPublicUsers, setShowPublicUsers] = React.useState(false);
@@ -48,7 +48,7 @@ const BasicForm = props => {
     },
   };
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     const { dispatch } = props;
     dispatch({
       type: 'formAndbasicForm/submitRegularForm',
@@ -56,11 +56,11 @@ const BasicForm = props => {
     });
   };
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  const onValuesChange = changedValues => {
+  const onValuesChange = (changedValues) => {
     const { publicType } = changedValues;
     if (publicType) setShowPublicUsers(publicType === '2');
   };

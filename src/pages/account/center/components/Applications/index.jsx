@@ -37,7 +37,7 @@ export function formatWan(val) {
   return result;
 }
 
-const Applications = props => {
+const Applications = (props) => {
   const { list } = props;
   const itemMenu = (
     <Menu>
@@ -86,7 +86,7 @@ const Applications = props => {
         xs: 1,
       }}
       dataSource={list}
-      renderItem={item => (
+      renderItem={(item) => (
         <List.Item key={item.id}>
           <Card
             hoverable

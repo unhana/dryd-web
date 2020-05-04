@@ -13,7 +13,7 @@ const formLayout = {
   },
 };
 
-const OperationModal = props => {
+const OperationModal = (props) => {
   const [form] = Form.useForm();
   const { done, visible, current, onDone, onCancel, onSubmit } = props;
   useEffect(() => {
@@ -35,7 +35,7 @@ const OperationModal = props => {
     form.submit();
   };
 
-  const handleFinish = values => {
+  const handleFinish = (values) => {
     if (onSubmit) {
       onSubmit(values);
     }

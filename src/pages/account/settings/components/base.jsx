@@ -76,7 +76,7 @@ class BaseView extends Component {
     return '';
   }
 
-  getViewDom = ref => {
+  getViewDom = (ref) => {
     this.view = ref;
   };
 

@@ -185,7 +185,7 @@ const Articles = ({ dispatch, listAndsearchAndarticles: { list }, loading }) => 
           <StandardFormRow title="owner" grid>
             <FormItem name="owner" noStyle>
               <Select mode="multiple" placeholder="选择 owner">
-                {owners.map(owner => (
+                {owners.map((owner) => (
                   <Option key={owner.id} value={owner.id}>
                     {owner.name}
                   </Option>
@@ -244,7 +244,7 @@ const Articles = ({ dispatch, listAndsearchAndarticles: { list }, loading }) => 
           itemLayout="vertical"
           loadMore={loadMore}
           dataSource={list}
-          renderItem={item => (
+          renderItem={(item) => (
             <List.Item
               key={item.id}
               actions={[

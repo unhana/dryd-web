@@ -3,7 +3,7 @@ import { Form, Input, Modal } from 'antd';
 
 const FormItem = Form.Item;
 
-const CreateForm = props => {
+const CreateForm = (props) => {
   const [form] = Form.useForm();
   const { modalVisible, onSubmit: handleAdd, onCancel } = props;
 

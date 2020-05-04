@@ -42,19 +42,19 @@ class Analysis extends Component {
     clearTimeout(this.timeoutId);
   }
 
-  handleChangeSalesType = e => {
+  handleChangeSalesType = (e) => {
     this.setState({
       salesType: e.target.value,
     });
   };
 
-  handleTabChange = key => {
+  handleTabChange = (key) => {
     this.setState({
       currentTabKey: key,
     });
   };
 
-  handleRangePickerChange = rangePickerValue => {
+  handleRangePickerChange = (rangePickerValue) => {
     const { dispatch } = this.props;
     this.setState({
       rangePickerValue,
@@ -64,7 +64,7 @@ class Analysis extends Component {
     });
   };
 
-  selectDate = type => {
+  selectDate = (type) => {
     const { dispatch } = this.props;
     this.setState({
       rangePickerValue: getTimeDistance(type),
@@ -74,7 +74,7 @@ class Analysis extends Component {
     });
   };
 
-  isActive = type => {
+  isActive = (type) => {
     const { rangePickerValue } = this.state;
 
     if (!rangePickerValue) {

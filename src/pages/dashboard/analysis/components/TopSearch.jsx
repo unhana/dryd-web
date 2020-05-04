@@ -23,7 +23,7 @@ const columns = [
     ),
     dataIndex: 'keyword',
     key: 'keyword',
-    render: text => <a href="/">{text}</a>,
+    render: (text) => <a href="/">{text}</a>,
   },
   {
     title: <FormattedMessage id="dashboardandanalysis.table.users" defaultMessage="Users" />,
@@ -148,7 +148,7 @@ const TopSearch = ({ loading, visitData2, searchData, dropdownGroup }) => (
       </Col>
     </Row>
     <Table
-      rowKey={record => record.index}
+      rowKey={(record) => record.index}
       size="small"
       columns={columns}
       dataSource={searchData}

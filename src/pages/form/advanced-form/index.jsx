@@ -48,14 +48,14 @@ const AdvancedForm = ({ submitting, dispatch }) => {
   const [form] = Form.useForm();
   const [error, setError] = useState([]);
 
-  const getErrorInfo = errors => {
-    const errorCount = errors.filter(item => item.errors.length > 0).length;
+  const getErrorInfo = (errors) => {
+    const errorCount = errors.filter((item) => item.errors.length > 0).length;
 
     if (!errors || errorCount === 0) {
       return null;
     }
 
-    const scrollToField = fieldKey => {
+    const scrollToField = (fieldKey) => {
       const labelNode = document.querySelector(`label[for="${fieldKey}"]`);
 
       if (labelNode) {
@@ -63,7 +63,7 @@ const AdvancedForm = ({ submitting, dispatch }) => {
       }
     };
 
-    const errorList = errors.map(err => {
+    const errorList = errors.map((err) => {
       if (!err || err.errors.length === 0) {
         return null;
       }
@@ -84,7 +84,7 @@ const AdvancedForm = ({ submitting, dispatch }) => {
           content={errorList}
           overlayClassName={styles.errorPopover}
           trigger="click"
-          getPopupContainer={trigger => {
+          getPopupContainer={(trigger) => {
             if (trigger && trigger.parentNode) {
               return trigger.parentNode;
             }
@@ -99,7 +99,7 @@ const AdvancedForm = ({ submitting, dispatch }) => {
     );
   };
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     setError([]);
     dispatch({
       type: 'formAndadvancedForm/submitAdvancedForm',
@@ -107,7 +107,7 @@ const AdvancedForm = ({ submitting, dispatch }) => {
     });
   };
 
-  const onFinishFailed = errorInfo => {
+  const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
     setError(errorInfo.errorFields);
   };
@@ -401,7 +401,7 @@ const AdvancedForm = ({ submitting, dispatch }) => {
                   style={{
                     width: '100%',
                   }}
-                  getPopupContainer={trigger => {
+                  getPopupContainer={(trigger) => {
                     if (trigger && trigger.parentNode) {
                       return trigger.parentNode;
                     }

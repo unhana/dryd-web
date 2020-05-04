@@ -12,7 +12,7 @@ const formItemLayout = {
   },
 };
 
-const Step2 = props => {
+const Step2 = (props) => {
   const [form] = Form.useForm();
   const { data, dispatch, submitting } = props;
 

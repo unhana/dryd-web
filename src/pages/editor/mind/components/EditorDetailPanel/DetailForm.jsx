@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Input, Select, Form } from 'antd';
 import { withPropsAPI } from 'gg-editor';
 
-const upperFirst = str => str.toLowerCase().replace(/( |^)[a-z]/g, l => l.toUpperCase());
+const upperFirst = (str) => str.toLowerCase().replace(/( |^)[a-z]/g, (l) => l.toUpperCase());
 
 const { Item } = Form;
 const { Option } = Select;
@@ -25,7 +25,7 @@ class DetailForm extends React.Component {
     return propsAPI.getSelected()[0];
   }
 
-  handleFieldChange = values => {
+  handleFieldChange = (values) => {
     const { propsAPI } = this.props;
     const { getSelected, executeCommand, update } = propsAPI;
     setTimeout(() => {
@@ -41,7 +41,7 @@ class DetailForm extends React.Component {
     }, 0);
   };
 
-  handleInputBlur = type => e => {
+  handleInputBlur = (type) => (e) => {
     e.preventDefault();
     this.handleFieldChange({
       [type]: e.currentTarget.value,
@@ -77,7 +77,7 @@ class DetailForm extends React.Component {
         </Item>
         <Item label="Shape" name="shape" {...inlineFormItemLayout}>
           <Select
-            onChange={value =>
+            onChange={(value) =>
               this.handleFieldChange({
                 shape: value,
               })

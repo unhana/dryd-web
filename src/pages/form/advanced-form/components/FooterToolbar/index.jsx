@@ -18,7 +18,7 @@ export default class FooterToolbar extends Component {
     const { children, className, extra, ...restProps } = this.props;
     return (
       <RouteContext.Consumer>
-        {value => (
+        {(value) => (
           <div
             className={classNames(className, styles.toolbar)}
             style={{
